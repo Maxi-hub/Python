@@ -8,23 +8,37 @@
 -> 5
 '''
 
+import random
+
 number_len = int(input("Введите длину массива "))
 
 list_1 = []
-for i in range(number_len+1):
-    list_1.append(i)
-list_1.remove(0)
+i = 0
+while i < number_len:
+    n = random.randint(1, 20)
+    i+=1
+    list_1.append(n)
 print(list_1)
 
-x_number = (int(input("Введите число ")))
-res = 0
-if x_number > len(list_1):
-    res = (len(list_1))
-    print(res)
-elif x_number < list_1[0]:
-    res = (list_1[0])
-    print(res)
-else:
-    res = x_number
-    print(res)
+list_1 = sorted(list_1) 
+print(list_1)
 
+k = int(input("Введите число "))
+
+res = 0
+min = 0
+for i in list_1:
+    if k == i:
+        res = k
+        break
+    if k > i:
+        min = i
+        res = min
+    if k < i: 
+        res = i
+        break
+print(res)
+
+     
+
+       

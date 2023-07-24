@@ -16,11 +16,11 @@ for i in range(number_len+1):
 list_1.remove(0)
 print(list_1)
 
-x_number = (int(input("Введите искомое число ")))
+k = (int(input("Введите искомое число ")))
 count = 0
 i = 0
 while i < len(list_1):
-    if list_1[i] == x_number:
+    if list_1[i] == k:
         count +=1
     i+=1
 print(count)
