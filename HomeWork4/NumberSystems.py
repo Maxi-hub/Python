@@ -7,19 +7,32 @@
 '''
 
 
-number = int(input("Введите число: "))
+def get_number():
+    number = int(input("Введите число: "))
+    return number
 
-list1 = []
-remainder = 0
-while number > 0:
-    new_number = number // 2
-    remainder = number % 2
-    number = new_number 
-    list1.append(remainder)
+number = get_number()
 
-for i in range(len(list1) // 2):
-    list1[i], list1[len(list1)-1-i] = list1[len(list1)-1-i], list1[i]
+def get_binary_number(number: int):
+    list1 = []
+    remainder = 0
+    while number > 0:
+        new_number = number // 2
+        remainder = number % 2
+        number = new_number 
+        list1.append(remainder)
+    return list1
 
-binary_number = int(''.join(map(str, list1)))
-print(binary_number) 
+list2 = get_binary_number(number)
+
+def list_flip(list: list):
+    for i in range(len(list2) // 2): # перемещение конечного элемента списка на начальный и наоборот, доходя до середины списка 
+        list2[i], list2[len(list2)-1-i] = list2[len(list2)-1-i], list2[i]
+    return list2
+
+list2 = list_flip(list2)
+
+binary_number = int(''.join(map(str, list2)))
+print(f"Число в восьмеричной системе представления: {binary_number}") 
+
 
