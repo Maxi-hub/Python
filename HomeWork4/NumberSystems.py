@@ -35,4 +35,6 @@ list2 = list_flip(list2)
 binary_number = int(''.join(map(str, list2)))
 print(f"Число в восьмеричной системе представления: {binary_number}") 
 
+print(bin(number))
+
 
