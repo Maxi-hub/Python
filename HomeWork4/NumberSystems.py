@@ -45,15 +45,18 @@ print(bin(number))
 while len(list2)%3 != 0: # дополняем список нулями
     list2.insert(0, 0)
 
-new_list = []
-for i in range(0, len(list2), 3):
-    one = list2[i]*(2**2)
-    two = list2[i+1]*(2**1)
-    three = list2[i+2]*(2**0)
-    res = one + two + three
-    new_list += {res}
+def get_octal_number(list: list) -> list:
+    new_list = []
+    for i in range(0, len(list2), 3):
+        one = list2[i]*(2**2)
+        two = list2[i+1]*(2**1)
+        three = list2[i+2]*(2**0)
+        res = one + two + three
+        new_list += {res}
+    return new_list
 
-octal_number = int(''.join(map(str, new_list)))
+ls = get_octal_number(list2)
+octal_number = int(''.join(map(str, ls)))
 print(f"Число в восьмеричной системе представления: {octal_number}") 
 
 print(oct(number))
