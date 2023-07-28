@@ -18,7 +18,8 @@ for i in range(bushes):
 
 print(*berries)
 
-berries2 = berries[1:] + berries[:1]
+berries2 = berries[1:] + berries[:1] # сдвинули кусты
+
 
 harvest_max = 0
 j = 0
