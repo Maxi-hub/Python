@@ -5,15 +5,13 @@ A = 2; B = 3 -> 8
 '''
 
 def degree_of_number(a, b):
-    res = 1
-    res *= a
     if b == 1:
-        return res 
+        return a 
     else:
         return a*degree_of_number(a, b - 1)
     
     
-d = degree_of_number(3, 5)
+d = degree_of_number(2, 3)
 print(d)
 
     
