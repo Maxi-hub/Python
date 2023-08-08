@@ -15,27 +15,19 @@ from functools import reduce
 list_1 = (input("Введите стихотворение: ")).split()
 print(list_1)
 
-list_vowels = 'аеёийоуыэюя'
-# count = sum(sum(word.count(vowel) for vowel in list_vowels) for word in list_1)
-# print(count) 
 
-def good_song(list_vowels, list_1):
-    S = (sum(map((lambda x: list_vowels.count(i) for i in list_vowels), list_1)))
-    print(S) 
+def good_song(list_1):
+    list_vowels = set("аеёийоуыэюя")
+    list_2 = [sum(1 for letter in word if letter in list_vowels) for word in list_1]
+    return(list_2)
+     
+     
+list_2 = good_song(list_1)
 
-good_song(list_vowels, list_1)
 
-res =  count // len(list_1)
-
-# a = "Парам пам-пам"
-# b = "Пам парам"
-# res = reduce(lambda x, y: a if (x == y) else b, list_2)
+a = "Парам пам-пам"
+b = "Пам парам"
+res = reduce(lambda x, y: a if (x == y) else b, list_2)
 print(res)
-
-
-
-
-
-
 
 
