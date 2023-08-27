@@ -26,13 +26,46 @@ def load():
     return phone_book
 
 def delite():
-    name = input("Введите имя для удаления: ")
-    if name in phone_book:
-        del phone_book[name]
-        print("Контакт удален")
-        save() 
-    else:
-        print("Такое имя не найдено") 
+    print("Что будем удалять? 1 - контакт, 2 - phone number1, 3 - phone number2, 4 - birthday, 5 - email")
+    n = int(input("Введите число: "))
+    if n == 1:
+        name = input("Введите имя для удаления: ")
+        if name in phone_book:
+            del phone_book[name]
+            print("Контакт удален")
+            save() 
+    if n == 2:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            del phone_book[name]['phone_numbers'][0]
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено в телефонном справочнике") 
+    if n == 3:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            del phone_book[name]['phone_numbers'][1]
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено в телефонном справочнике") 
+    if n == 4:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            del phone_book[name]['birth_day']
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено в телефонном справочнике") 
+    if n == 5:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            del phone_book[name]['email']
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено") 
     return phone_book
 
 def find():
