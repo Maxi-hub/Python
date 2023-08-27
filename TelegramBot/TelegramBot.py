@@ -2,8 +2,10 @@ import telebot
 from random import *
 import json
 import requests
+from telebot import types
 
 films = []
+hello = ["привет", "добрый день", "добрый вечер", "здравствуйте"]
 
 API_TOKEN = '6231098274:AAEDToIK6SXaQ0AJ7pZvZUI6KLCJBjUVy-4'
 API_URL = 'https://7012.deeppavlov.ai/model'
@@ -27,7 +29,7 @@ def show_all(message):
     except:
          bot.send_message(message.chat.id,"Фильмотека то пустая!")
 
-@bot.message_handler(commands = ['add']) # TODO: добавление не работает
+@bot.message_handler(commands = ['add']) # TODO добавление не работает, исправить
 def add_film(message): 
         bot.send_message(message.chat.id,"Введите название фильма")
         text = message.text
@@ -56,10 +58,27 @@ def wiki(message):
 
 @bot.message_handler(content_types=['text'])
 def get_text_messages(message):
+    for item in hello:
+        if item in message.text.lower() :
+            bot.send_message(message.chat.id, "И я тебя приветствую! Поболтаем?")
+    keyboard = types.InlineKeyboardMarkup(); #наша клавиатура
+    key_yes = types.InlineKeyboardButton(text='Конечно', callback_data='yes'); #кнопка «Да»
+    keyboard.add(key_yes); #добавляем кнопку в клавиатуру
+    key_no= types.InlineKeyboardButton(text='Не сейчас', callback_data='no')
+    keyboard.add(key_no)
+    ansver = "Что скажешь?"
+    bot.send_message(message.chat.id, text = ansver, reply_markup=keyboard)
     if "дела" in message.text.lower() :
        bot.send_message(message.chat.id, "Дела у меня хорошо, сам как?")
 
 
-bot.polling() #запуск бота, кот.включает в себя скрытый цикл while true
+@bot.callback_query_handler(func=lambda call: True)
+def callback_worker(call):
+    if call.data == "yes": #call.data это callback_data, которую мы указали при объявлении кнопки
+        bot.send_message(call.message.chat.id, 'Отлично') #код сохранения данных, или их обработки
+    elif call.data == "no":
+         bot.send_message(call.message.chat.id, 'Может тогда позже. Ну ты, если что, заходи')
+
+bot.polling(none_stop=True, interval=0) #запуск бота, кот.включает в себя скрытый цикл while true
 
 
