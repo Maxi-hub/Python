@@ -25,6 +25,38 @@ def load():
         phone_book = json.load(fh)
     return phone_book
 
+def add():
+    print("Что будем добавлять?" '\n' "1 - добавить новый контакт" '\n' "Добавить в имеющийся контакт:" '\n' "2 - phone number, 3 - email")
+    n = int(input("Введите число: "))
+    if n == 1:
+        name = input("Введите имя нового контакта: ")
+        number0 = input("Введите 1й номер: ")
+        number1 = input("Введите 2й номер: ")
+        bithday = input("Введите ДР: ")
+        mail = input("Введите email: ")
+        phone_book.update({name: {"phone_numbers": [number0, number1], "birth_day": bithday, "email": mail}})
+        print("Контакт создан")
+        save()
+    if n == 2:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            new_phone_number = input("Введите новый номер телефона: ")
+            phone_book[name]['phone_numbers'].append(new_phone_number)
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено в телефонном справочнике") 
+    if n == 3:
+        name = input("Введите имя контакта ")
+        if name in phone_book:
+            new_email = input("Введите email: ")
+            phone_book[name]['email'].append(new_email)
+            print(name, phone_book[name])
+            save()
+        else:
+            print("Такое имя не найдено") 
+    return phone_book
+
 def delite():
     print("Что будем удалять? 1 - контакт, 2 - phone number1, 3 - phone number2, 4 - birthday, 5 - email")
     n = int(input("Введите число: "))
@@ -126,17 +158,11 @@ def change():
         else:
             print("Такое имя не найдено в телефонном справочнике") 
 
+
 while True:
     command = input("Введите команду: ")
     if command == "/add":
-        name = input("Введите имя нового контакта: ")
-        number0 = input("Введите 1й номер: ")
-        number1 = input("Введите 2й номер: ")
-        bithday = input("Введите ДР: ")
-        mail = input("Введите email: ")
-        phone_book.update({name: {"phone_numbers": [number0, number1], "birth_day": bithday, "email": mail}})
-        print("Контакт создан")
-        save()
+        add()
     if command == "/save":
         save()
     if command == "/del":
@@ -150,6 +176,7 @@ while True:
         find()
     if command == "/change":
         change()
+    
 
 
         
